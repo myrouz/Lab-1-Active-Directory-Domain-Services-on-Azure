@@ -5,7 +5,8 @@
 ![PowerShell](https://img.shields.io/badge/PowerShell-ActiveDirectory%20module-5391FE?logo=powershell&logoColor=white)
 ![Focus](https://img.shields.io/badge/Focus-Identity%20%26%20Access%20Management-6B4FA0)
 
-Follow along as I complete this lab! https://www.loom.com/share/8dabc9d278f142ad891bd00f2dac9b9e
+Follow along as I complete this lab! 
+https://www.loom.com/share/8dabc9d278f142ad891bd00f2dac9b9e
 
 
 ## Overview
