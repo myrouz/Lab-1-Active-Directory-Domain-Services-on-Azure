@@ -1,5 +1,10 @@
 # Lab-1-Active-Directory-Domain-Services-on-Azure
 
+![Windows Server 2025](https://img.shields.io/badge/Windows%20Server-2025-0078D4?logo=windows&logoColor=white)
+![Microsoft Azure](https://img.shields.io/badge/Microsoft-Azure-0078D4?logo=microsoftazure&logoColor=white)
+![PowerShell](https://img.shields.io/badge/PowerShell-ActiveDirectory%20module-5391FE?logo=powershell&logoColor=white)
+![Focus](https://img.shields.io/badge/Focus-Identity%20%26%20Access%20Management-6B4FA0)
+
 ## Overview
 
 This lab demonstrates an Active Directory Domain Services (AD DS) deployment on a Microsoft Azure Windows Server 2025 virtual machine, fully automated with PowerShell. It covers end-to-end infrastructure provisioning, domain controller promotion, organizational unit (OU) hierarchy design, security group and user provisioning, Group Policy Object (GPO) configuration, and automated audit validation. The lab reflects real-world systems administration practices for deploying and managing Active Directory in a cloud-hosted environment.
