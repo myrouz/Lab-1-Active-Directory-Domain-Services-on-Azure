@@ -203,22 +203,6 @@ Execute the built-in audit report to verify the full deployment: domain controll
 
 ---
 
-### 11. Commit and Push to GitHub
-
-Add the deployment script to version control and push to the remote repository.
-
-```powershell
-git add scripts/deploy-ad.ps1
-git commit -m "feat: complete active directory core deployment script with gpo injection automation"
-git push
-```
-
-![Git commit — 144 insertions, deploy-ad.ps1](screenshots/Screenshot%202026-06-09%20232730.png)
-
-![Git push to github.com/sammathaadams/active-directory-lab1](screenshots/Screenshot%202026-06-09%20232815.png)
-
----
-
 ## Key Skills Demonstrated
 
 - Azure VM provisioning and NSG configuration
