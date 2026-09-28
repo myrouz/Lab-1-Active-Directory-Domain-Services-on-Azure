@@ -20,7 +20,7 @@ This lab demonstrates an Active Directory Domain Services (AD DS) deployment on 
 
 ---
 
-## Business Context
+## Business Problem This Lab Solves
 
 Organizations rely on Active Directory as a foundational component of identity and access management. This lab simulates provisioning a new domain from the ground up in a cloud environment—a common requirement for new infrastructure deployments, disaster recovery, and lab or development environments.
 
