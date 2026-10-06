@@ -38,16 +38,18 @@ Organizations rely on Active Directory as the backbone of identity and access ma
 
 ---
 
-## Prerequisites
+## ✅ Prerequisites
 
-- Azure subscription with permissions to create Resource Groups, VMs, VNets, and NSGs
-- Windows Remote Desktop client
-- PowerShell 5.1+ (available on Windows Server 2025 by default)
-- Basic familiarity with Active Directory concepts (OUs, GPOs, security groups)
+- Microsoft Azure account with permission to create a resource group, VMs, and a virtual network
+- RDP client for connecting to the VMs
+- PowerShell 5.1+ (7+ recommended) and VS Code (optional)
+- Basic familiarity with networking (IP, DNS), PowerShell, and AD concepts (forest, domain, OU, GPO)
+- A virtual network where the workstation's DNS points to the domain controller
+- NSG rule allowing RDP (3389), restricted to your IP
 
 ---
 
-## Architecture
+## 🧩 Architecture
 
 ![Architecture Diagram](diagrams/architecture.svg)
 
