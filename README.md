@@ -1,8 +1,9 @@
 # Lab-1-Active-Directory-Domain-Services-on-Azure
 
-![Windows Server 2025](https://img.shields.io/badge/Windows%20Server-2025-0078D4?logo=windows&logoColor=white)
-![Microsoft Azure](https://img.shields.io/badge/Microsoft-Azure-0078D4?logo=microsoftazure&logoColor=white)
-![PowerShell](https://img.shields.io/badge/PowerShell-ActiveDirectory%20module-5391FE?logo=powershell&logoColor=white)
+![Platform: Microsoft Azure](https://img.shields.io/badge/Platform-Microsoft%20Azure-0078D4?logo=microsoftazure&logoColor=white)
+![Operating System: Windows Server 2025](https://img.shields.io/badge/Operating%20System-Windows%20Server%202025-0078D4?logo=windows&logoColor=white)
+![Directory Service: Active Directory](https://img.shields.io/badge/Directory%20Service-Active%20Directory-0078D4?logo=microsoft&logoColor=white)
+![Scripting Language: PowerShell](https://img.shields.io/badge/Scripting%20Language-PowerShell-5391FE?logo=powershell&logoColor=white)
 ![Focus](https://img.shields.io/badge/Focus-Identity%20%26%20Access%20Management-6B4FA0)
 
 Follow along as I complete this lab! 
