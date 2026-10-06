@@ -1,4 +1,4 @@
-# Lab-1-Active-Directory-Domain-Services-on-Azure
+# Lab 1: Active Directory Domain Services on Azure
 
 ![Platform: Microsoft Azure](https://img.shields.io/badge/Platform-Microsoft%20Azure-0078D4?logo=microsoftazure&logoColor=white)
 ![Operating System: Windows Server 2025](https://img.shields.io/badge/Operating%20System-Windows%20Server%202025-0078D4?logo=windows&logoColor=white)
@@ -6,13 +6,22 @@
 ![Scripting Language: PowerShell](https://img.shields.io/badge/Scripting%20Language-PowerShell-5391FE?logo=powershell&logoColor=white)
 ![Focus](https://img.shields.io/badge/Focus-Identity%20%26%20Access%20Management-6B4FA0)
 
+---
+
+## 🎥 Walkthrough
+
 Follow along as I complete this lab! 
+
 https://www.loom.com/share/8dabc9d278f142ad891bd00f2dac9b9e
 
+---
 
-## Overview
+## 📋 Overview
+Active Directory is the identity backbone of most enterprise Windows environments. It answers one core question: who is allowed to do what? It controls which users can log into which machines, which groups can access which resources, and which policies apply to which parts of the organization.
 
-This lab demonstrates an Active Directory Domain Services (AD DS) deployment on a Microsoft Azure Windows Server 2025 virtual machine, fully automated with PowerShell. It covers end-to-end infrastructure provisioning, domain controller promotion, organizational unit (OU) hierarchy design, security group and user provisioning, Group Policy Object (GPO) configuration, and automated audit validation. The lab reflects real-world systems administration practices for deploying and managing Active Directory in a cloud-hosted environment.
+This lab demonstrates an Active Directory Domain Services (AD DS) deployment on a Microsoft Azure Windows Server 2025 virtual machine, automated with PowerShell. It covers infrastructure provisioning, domain controller promotion, OU hierarchy design, role-based access control with security groups and user provisioning, Group Policy configuration, and automated audit validation. I also worked through the day-to-day tasks that are core to IT support and sysadmin work: password resets, account unlocks, and offboarding.
+
+The same identity model of users, groups, role-based access, and centrally enforced policy carries over conceptually to cloud identity platforms like Microsoft Entra ID, which makes this lab foundational even for cloud-focused roles.
 
 **Domain:** `lab.local`  
 **Platform:** Microsoft Azure  
@@ -21,7 +30,7 @@ This lab demonstrates an Active Directory Domain Services (AD DS) deployment on 
 
 ---
 
-## Business Problem This Lab Solves
+## 🎯 Business Context
 
 Organizations rely on Active Directory as a foundational component of identity and access management. This lab simulates provisioning a new domain from the ground up in a cloud environment—a common requirement for new infrastructure deployments, disaster recovery, and lab or development environments.
 
