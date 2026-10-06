@@ -23,10 +23,12 @@ This lab demonstrates an Active Directory Domain Services (AD DS) deployment on 
 
 The same identity model of users, groups, role-based access, and centrally enforced policy carries over conceptually to cloud identity platforms like Microsoft Entra ID, which makes this lab foundational even for cloud-focused roles.
 
-**Domain:** `lab.local`  
-**Platform:** Microsoft Azure  
-**OS:** Windows Server 2025 Datacenter  
-**Automation:** PowerShell (`deploy-ad.ps1`)
+| | |
+|---|---|
+| **Platform** | Microsoft Azure |
+| **OS** | Windows Server 2025 Datacenter |
+| **Domain** | `lab.local` |
+| **Automation** | PowerShell (`deploy-ad.ps1`) |
 
 ---
 
