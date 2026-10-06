@@ -34,9 +34,7 @@ The same identity model of users, groups, role-based access, and centrally enfor
 
 ## 🎯 Business Context
 
-Organizations rely on Active Directory as a foundational component of identity and access management. This lab simulates provisioning a new domain from the ground up in a cloud environment—a common requirement for new infrastructure deployments, disaster recovery, and lab or development environments.
-
-Automating the provisioning pipeline minimizes human error, ensures consistent OU and security group structures, and creates an auditable record of the environment’s configuration state.
+Organizations rely on Active Directory as the backbone of identity and access management, centralizing how users are provisioned, granted access, and offboarded. This lab simulates standing up a new domain from scratch in a cloud environment—a task common in greenfield deployments, disaster recovery, and lab or development environments. Automating the provisioning pipeline reduces human error, enforces consistent OU and security group structures, and provides an auditable record of the environment’s configuration.
 
 ---
 
