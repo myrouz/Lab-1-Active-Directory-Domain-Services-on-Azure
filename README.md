@@ -17,11 +17,13 @@ https://www.loom.com/share/8dabc9d278f142ad891bd00f2dac9b9e
 ---
 
 ## 📋 Overview
-Active Directory is the identity backbone of most enterprise Windows environments. It answers one core question: who is allowed to do what? It controls which users can log into which machines, which groups can access which resources, and which policies apply to which parts of the organization.
+Active Directory is the identity backbone of many enterprise Windows environments. It answers one fundamental question: who has access to what? Active Directory Domain Services (AD DS) manages user authentication, group-based resource access, and centrally enforced security policies across domain-joined systems.
 
-This lab demonstrates an Active Directory Domain Services (AD DS) deployment on a Microsoft Azure Windows Server 2025 virtual machine, automated with PowerShell. It covers infrastructure provisioning, domain controller promotion, OU hierarchy design, role-based access control with security groups and user provisioning, Group Policy configuration, and automated audit validation. I also worked through the day-to-day tasks that are core to IT support and sysadmin work: password resets, account unlocks, and offboarding.
+This lab demonstrates the deployment of an AD DS environment on a Microsoft Azure Windows Server 2025 virtual machine, with administrative tasks automated through PowerShell. Implementation includes infrastructure provisioning, domain controller promotion, Organizational Unit (OU) hierarchy design, role-based access control through security groups, scripted user provisioning, Group Policy Object (GPO) configuration, and automated audit validation.
 
-The same identity model of users, groups, role-based access, and centrally enforced policy carries over conceptually to cloud identity platforms like Microsoft Entra ID, which makes this lab foundational even for cloud-focused roles.
+The lab also covers routine IT support and system administration tasks, including password resets, account unlocks, and user offboarding. These activities demonstrate practical identity lifecycle management and the administration of enterprise directory services.
+
+The identity and access management principles demonstrated throughout this lab—including user and group management, role-based access control, and centralized policy enforcement—also provide a conceptual foundation for cloud identity platforms such as Microsoft Entra ID, making this project relevant to both traditional infrastructure and cloud-focused roles.
 
 | | |
 |---|---|
@@ -34,7 +36,9 @@ The same identity model of users, groups, role-based access, and centrally enfor
 
 ## 🎯 Business Context
 
-Organizations rely on Active Directory as the backbone of identity and access management, centralizing how users are provisioned, granted access, and offboarded. This lab simulates standing up a new domain from scratch in a cloud environment—a task common in greenfield deployments, disaster recovery, and lab or development environments. Automating the provisioning pipeline reduces human error, enforces consistent OU and security group structures, and provides an auditable record of the environment’s configuration.
+Organizations rely on Active Directory as a core identity and access management platform, centralizing user provisioning, resource access, and account offboarding. This lab simulates deploying a new Active Directory domain from the ground up in a cloud environment, reflecting scenarios such as greenfield infrastructure deployments, disaster recovery, and lab or development environments.
+
+Automating user provisioning and directory configuration through PowerShell helps reduce manual errors, standardize Organizational Unit (OU) and security group structures, and improve configuration consistency and auditability. These practices support scalable identity administration and reinforce security governance across enterprise Windows environments.
 
 ---
 
