@@ -42,28 +42,9 @@ Automating user provisioning and directory configuration through PowerShell help
 
 ---
 
-## ✅ Prerequisites
-
-- Microsoft Azure account with permission to create a resource group, VMs, and a virtual network
-- RDP client for connecting to the VMs
-- PowerShell 5.1+ (7+ recommended) and VS Code (optional)
-- Basic familiarity with networking (IP, DNS), PowerShell, and AD concepts (forest, domain, OU, GPO)
-- A virtual network where the workstation's DNS points to the domain controller
-- NSG rule allowing RDP (3389), restricted to your IP
-
----
-
 ## 🧩 Architecture
 
 <img width="1024" height="633" alt="AD DS-architecture" src="https://github.com/user-attachments/assets/b64dfe15-2bb0-40f9-a12d-8581599802bf" />
-
-
-| Resource | Name | Type |
-|---|---|---|
-| Resource Group | `rg-lab01-0626` | Azure Resource Group |
-| Virtual Machine | `dc01` | `Microsoft.Compute/virtualMachine` |
-| Virtual Network | `dc01-vnet` | Azure VNet |
-| Network Security Group | `dc01-nsg` | Azure NSG |
 
 ---
 ## ✅ Prerequisites
