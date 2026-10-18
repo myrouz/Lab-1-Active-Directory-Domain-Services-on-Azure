@@ -247,10 +247,9 @@ Execute the built-in audit report to verify the full deployment: domain controll
 
 ---
 
-## Cleanup
+## Vocabulary
 
-To avoid ongoing Azure charges, deallocate or delete the `dc01` VM and associated resources from the `rg-lab01-0626` resource group when the lab is complete.
+---
 
-```bash
-az group delete --name rg-lab01-0626 --yes --no-wait
-```
+## Lessons Learned 
+
