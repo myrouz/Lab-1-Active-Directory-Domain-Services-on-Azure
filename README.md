@@ -55,7 +55,8 @@ Automating user provisioning and directory configuration through PowerShell help
 
 ## 🧩 Architecture
 
-![Architecture Diagram](diagrams/architecture.svg)
+<img width="1024" height="633" alt="AD DS-architecture" src="https://github.com/user-attachments/assets/b64dfe15-2bb0-40f9-a12d-8581599802bf" />
+
 
 | Resource | Name | Type |
 |---|---|---|
