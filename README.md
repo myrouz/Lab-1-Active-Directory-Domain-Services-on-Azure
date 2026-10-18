@@ -66,22 +66,49 @@ Automating user provisioning and directory configuration through PowerShell help
 | Network Security Group | `dc01-nsg` | Azure NSG |
 
 ---
+## ✅ Prerequisites
 
-## Steps
+
+<details>
+  <summary><b>1. Deploy a Windows Virtual Machine in Azure</b></summary>
+
+
+a. **Search & Create:** Go to **Virtual machines** in the Azure Portal and click **Create > Azure virtual machine**.
+
+b. **Basics Tab:**
+  * Choose your subscription and resource group.
+  * Enter a **Virtual machine name** (e.g., `dc01`).
+  * Select your region and desired **Image** (e.g., Windows Server 2025).
+  * Set up your administrator **Username** and **Password**.
+  * Under **Public inbound ports**, check **RDP (3389)**.
+
+c. **Review & Create:** Click **Review + create**, wait for validation, and click **Create**.
+
+d. **Connect:** Once deployed, go to the resource, copy your **Public IP address**, and use RDP to log in.
+</details>
+
+<details>
+  <summary><b>2. Connect via Remote Desktop (RDP)</b></summary>
+
+
+a. **Get the Public IP:** In the [Azure Portal](https://portal.azure.com), navigate to your virtual machine and copy its **Public IP address** from the Overview page.
+
+b. **Launch Remote Desktop:** On your local computer, open the Remote Desktop Connection app (press the Windows key, type `mstsc`, and press Enter).
+
+c. **Enter the IP Address:** Paste your VM's public IP address into the **Computer** field and click **Connect**.
+
+d. **Authenticate:** When prompted for credentials, enter the administrator **Username** and **Password** you created during the VM setup.
+
+e. **Accept Certificate (If Prompted):** If a certificate warning appears regarding the remote computer's identity, click **Yes** or **Continue** to establish the connection.
+</details>
 
 ---
 
-### 1. Deploy the Azure Virtual Machine
+## 🛠️ Hands-On Steps
 
----
 
-### 2. Connect via Remote Desktop (RDP)
-
-Once the VM is running, retrieve its public IP from the Azure portal and connect using Remote Desktop.
-
----
-
-### 3. Install AD DS and Group Policy Management Console
+<details>
+  <summary><b>3. Install AD DS and Group Policy Management Console</b></summary>
 
 From an elevated PowerShell session on `dc01`, install the AD Domain Services role and the Group Policy Management Console (GPMC).
 
@@ -95,10 +122,10 @@ Both commands complete with `Success: True`.
 ![AD DS installation in progress](screenshots/Screenshot%202026-06-09%20221024.png)
 
 ![AD DS and GPMC installation successful](screenshots/Screenshot%202026-06-09%20223008.png)
+</details>
 
----
-
-### 4. Promote the Server to a Domain Controller
+<details>
+  <summary><b>4. Promote the Server to a Domain Controller</b></summary>
 
 Run `Install-ADDSForest` to create a new forest and promote `dc01` to a domain controller for `lab.local`. The cmdlet handles DNS installation automatically.
 
@@ -109,10 +136,10 @@ Install-ADDSForest -DomainName "lab.local" -InstallDNS ...
 > **Note:** The DNS delegation warning is expected in isolated lab environments — no action required.
 
 ![Install-ADDSForest running — new forest installation and DNS setup](screenshots/Screenshot%202026-06-09%20223456.png)
+</details>
 
----
-
-### 5. Create Organizational Units (OUs)
+<details>
+  <summary><b>5. Create Organizational Units (OUs)</b></summary>
 
 Provision the department OU structure under `DC=lab,DC=local` to reflect the organization's business units.
 
@@ -126,10 +153,10 @@ New-ADOrganizationalUnit -Name "Sales"   -Path "DC=lab,DC=local"
 > The `Computers` OU already exists by default — the error shown is expected and non-breaking.
 
 ![Automated OU provisioning — IT, Finance, HR, Sales](screenshots/Screenshot%202026-06-09%20224456.png)
+</details>
 
----
-
-### 6. Create Security Groups
+<details>
+  <summary><b>6. Create Security Groups</b></summary>
 
 Create role-based security groups inside their respective OUs to support least-privilege access control.
 
@@ -141,10 +168,10 @@ New-ADGroup -Name "Sales_Users"    -GroupScope Global -GroupCategory Security -P
 ```
 
 ![Automated security group provisioning](screenshots/Screenshot%202026-06-09%20224544.png)
+</details>
 
----
-
-### 7. Create User Accounts
+<details>
+  <summary><b>7. Create User Accounts</b></summary>
 
 Bulk-provision user accounts with secure passwords, placing each user in their department OU.
 
@@ -156,10 +183,10 @@ Bulk-provision user accounts with secure passwords, placing each user in their d
 | `david.smith` | Sales | David Smith |
 
 ![Batch user creation across IT, Finance, HR, and Sales OUs](screenshots/Screenshot%202026-06-09%20224601.png)
+</details>
 
----
-
-### 8. Assign Role-Based Group Memberships
+<details>
+  <summary><b>8. Assign Role-Based Group Memberships</b></summary>
 
 Add each user to their corresponding security group to enable role-based access control (RBAC).
 
@@ -171,10 +198,10 @@ Add-ADGroupMember -Identity "Sales_Users"   -Members "david.smith"
 ```
 
 ![Role-based group membership assignment](screenshots/Screenshot%202026-06-09%20224623.png)
+</details>
 
----
-
-### 9. Create and Configure a Group Policy Object (GPO)
+<details>
+  <summary><b>9. Create and Configure a Group Policy Object (GPO)</b></summary>
 
 Create the `IT Security Policy` GPO, link it to the IT OU, and inject baseline security registry settings — including inactivity screensaver enforcement — to meet corporate security requirements.
 
@@ -199,14 +226,15 @@ Set-GPRegistryValue -Name "IT Security Policy" `
 ![ScreenSaveActive registry policy injected](screenshots/Screenshot%202026-06-09%20225824.png)
 
 ![ScreenSaverIsSecure registry policy injected](screenshots/Screenshot%202026-06-09%20225845.png)
+</details>
 
----
-
-### 10. Run Automated Audit Validation
+<details>
+  <summary><b>10. Run Automated Audit Validation</b></summary>
 
 Execute the built-in audit report to verify the full deployment: domain controller status, OU hierarchy, user accounts, group nesting, and GPO inheritance.
 
 **Domain Controller:**
+
 | ComputerName | Operating System | Forest |
 |---|---|---|
 | `dc01` | Windows Server 2025 Datacenter | `lab.local` |
@@ -221,7 +249,8 @@ Execute the built-in audit report to verify the full deployment: domain controll
 ![Audit report — user validation and group nesting](screenshots/Screenshot%202026-06-09%20230534.png)
 
 ![Audit report — GPO inheritance confirmed on IT OU](screenshots/Screenshot%202026-06-09%20230702.png)
-
+</details>
+  
 ---
 
 ## Key Skills Demonstrated
