@@ -17,28 +17,25 @@ https://www.loom.com/share/8dabc9d278f142ad891bd00f2dac9b9e
 ---
 
 ## 📋 Overview
-Active Directory is the identity backbone of many enterprise Windows environments. It answers one fundamental question: who has access to what? Active Directory Domain Services (AD DS) manages user authentication, group-based resource access, and centrally enforced security policies across domain-joined systems.
+Active Directory Domain Services (AD DS) is a core component of many enterprise Windows environments, enabling centralized identity management, user authentication, group-based access control, and security policy enforcement.
 
-This lab demonstrates the deployment of an AD DS environment on a Microsoft Azure Windows Server 2025 virtual machine, with administrative tasks automated through PowerShell. Implementation includes infrastructure provisioning, domain controller promotion, Organizational Unit (OU) hierarchy design, role-based access control through security groups, scripted user provisioning, Group Policy Object (GPO) configuration, and automated audit validation.
+This project demonstrates the deployment and configuration of an AD DS environment using a Windows Server 2025 virtual machine hosted in Microsoft Azure. The lab simulates a small enterprise environment in which IT administrators manage user identities, organize directory resources, assign permissions, enforce security policies, and automate administrative tasks using PowerShell.
 
-The lab also covers routine IT support and system administration tasks, including password resets, account unlocks, and user offboarding. These activities demonstrate practical identity lifecycle management and the administration of enterprise directory services.
+Implementation includes provisioning the Azure virtual machine, installing AD DS, promoting the server to a Domain Controller, creating a domain, designing an Organizational Unit (OU) hierarchy, configuring security groups and user accounts, and implementing Group Policy Objects (GPOs).
 
-The identity and access management principles demonstrated throughout this lab—including user and group management, role-based access control, and centralized policy enforcement—also provide a conceptual foundation for cloud identity platforms such as Microsoft Entra ID, making this project relevant to both traditional infrastructure and cloud-focused roles.
+I also used PowerShell to automate routine administrative tasks, including user provisioning, password resets, account unlocks, and account auditing. Configuration checks and audit scripts helped validate the environment and demonstrate practical Windows Server administration skills.
 
-| | |
-|---|---|
-| **Platform** | Microsoft Azure |
-| **OS** | Windows Server 2025 Datacenter |
-| **Domain** | `lab.local` |
-| **Automation** | PowerShell (`deploy-ad.ps1`) |
+The project highlights core identity and access management principles, including centralized administration, role-based access control, user lifecycle management, and security policy enforcement. These skills provide a foundation for further work with Microsoft Entra ID and cloud identity management.
+
+> Environment: This is a learning lab hosted in Microsoft Azure. It is intended for educational and portfolio purposes rather than production deployment.
 
 ---
 
 ## 🎯 Business Context
 
-Organizations rely on Active Directory as a core identity and access management platform, centralizing user provisioning, resource access, and account offboarding. This lab simulates deploying a new Active Directory domain from the ground up in a cloud environment, reflecting scenarios such as greenfield infrastructure deployments, disaster recovery, and lab or development environments.
+Organizations rely on Active Directory Domain Services (AD DS) as a core identity and access management platform for centralized user provisioning, authentication, resource access, and account lifecycle management. This lab simulates deploying a new Active Directory domain from the ground up in a Microsoft Azure environment, reflecting real-world scenarios such as greenfield infrastructure deployments, disaster recovery exercises, and lab or development environments.
 
-Automating user provisioning and directory configuration through PowerShell helps reduce manual errors, standardize Organizational Unit (OU) and security group structures, and improve configuration consistency and auditability. These practices support scalable identity administration and reinforce security governance across enterprise Windows environments.
+Automating user provisioning and directory configuration with PowerShell helps reduce manual errors, standardize Organizational Unit (OU) structures and security group assignments, and improve configuration consistency and auditability. These practices support scalable identity administration, strengthen access control, and promote consistent security policy enforcement across enterprise Windows environments.
 
 ---
 
@@ -47,6 +44,25 @@ Automating user provisioning and directory configuration through PowerShell help
 <img width="1024" height="633" alt="AD DS-architecture" src="https://github.com/user-attachments/assets/b64dfe15-2bb0-40f9-a12d-8581599802bf" />
 
 ---
+## 💻 Technology Stack 
+
+
+| Category | Technology | Purpose in This Project |
+|---|---|---|
+| **Cloud Infrastructure** | Microsoft Azure Virtual Machines | Hosts the Windows Server virtual machine in the cloud. |
+| | Azure Virtual Network (VNet) and Network Security Groups (NSGs) | Provides network connectivity for the VM and controls inbound and outbound traffic. |
+| **Operating System and Directory Services** | Windows Server | Provides the operating system for the domain controller. |
+| | Active Directory Domain Services (AD DS) | Centrally manages domain users, computers, authentication, and directory objects. |
+| | Domain Name System (DNS) | Resolves domain names and helps domain-joined computers locate Active Directory services. |
+| **Identity and Administration** | Active Directory Users and Computers (ADUC) | Creates and manages user accounts, groups, and Organizational Units. |
+| | Active Directory Security Groups | Organizes users and helps manage access to resources through group membership. |
+| | Organizational Units (OUs) | Organizes users, groups, and computers into containers for delegation and policy application. |
+| | Group Policy Objects (GPOs) | Applies centralized configuration and security settings to users and computers. |
+| | Group Policy Management Console (GPMC) | Creates, manages, and links Group Policy Objects. |
+| **Automation and Remote Administration** | Windows PowerShell | Automates user provisioning, administration, and auditing tasks. |
+| | Remote Desktop Protocol (RDP) | Provides remote access to administer the Windows Server VM. |
+
+
 ## ✅ Prerequisites
 
 
