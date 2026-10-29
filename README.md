@@ -82,11 +82,18 @@ b. **Basics Tab:**
 c. **Review & Create:** Click **Review + create**, wait for validation, and click **Create**.
 
 d. **Connect:** Once deployed, go to the resource, copy your **Public IP address**, and use RDP to log in.
+
+
 </details>
 
 <details>
   <summary><b>2. Connect via Remote Desktop (RDP)</b></summary>
 
+a. **** Click Go to Resource on the Deployment Complete page. Click Connect with dropdown. Select the first Connect option.
+
+b. **** Select Download RDP file. Click file to open Windows Remote Desktop. 
+
+c. **** Enter password when prompted to your credentials. 
 
 a. **Get the Public IP:** In the [Azure Portal](https://portal.azure.com), navigate to your virtual machine and copy its **Public IP address** from the Overview page.
 
@@ -107,6 +114,26 @@ e. **Accept Certificate (If Prompted):** If a certificate warning appears regard
 <details>
   <summary><b>3. Install AD DS and Group Policy Management Console</b></summary>
 
+Option 1: Server Manager (GUI)
+ - Open Server Manager, then Manage → Add Roles and Features.
+ - Choose Role-based or feature-based installation and select your server.
+ - Check Active Directory Domain Services and accept the prompt to add the required features (management tools).
+ - Click through to Install.
+
+<img width="780" height="554" alt="AD DS Server Roles" src="https://github.com/user-attachments/assets/2886f480-e836-455a-903c-1fec9b019fea" />
+
+> Check Active Directory Domain Services
+
+<img width="775" height="552" alt="GPMC Server Role" src="https://github.com/user-attachments/assets/7f64acc8-e470-42f4-8fc9-3f3427ec6191" />
+
+> Check Group Management Policy
+
+<img width="780" height="552" alt="AD DS and GPMC Installation" src="https://github.com/user-attachments/assets/b673bf3c-2485-4ee2-a482-be5bc9978d11" />
+
+> Click Install 
+
+Option 2: Powershell (CLI)
+
 From an elevated PowerShell session on `dc01`, install the AD Domain Services role and the Group Policy Management Console (GPMC).
 
 ```powershell
@@ -116,13 +143,15 @@ Install-WindowsFeature -Name GPMC
 
 Both commands complete with `Success: True`.
 
-![AD DS installation in progress](screenshots/Screenshot%202026-06-09%20221024.png)
-
-![AD DS and GPMC installation successful](screenshots/Screenshot%202026-06-09%20223008.png)
 </details>
 
 <details>
   <summary><b>4. Promote the Server to a Domain Controller</b></summary>
+
+Option 1: Server MAnager (GUI)
+
+ - When it finishes, click the flag icon in Server Manager and choose Promote this server to a domain controller to launch the configuration wizard.
+
 
 Run `Install-ADDSForest` to create a new forest and promote `dc01` to a domain controller for `lab.local`. The cmdlet handles DNS installation automatically.
 
