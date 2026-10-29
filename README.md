@@ -451,7 +451,16 @@ Get-ADPrincipalGroupMembership -Identity "alice.chen" | Select-Object Name
 
 ---
 
-## Vocabulary
+## Key Terms
+
+| Term | Description & Role in Active Directory |
+| --- | --- |
+| **Forest** | The top-level container of the entire Active Directory structure, representing the organization itself.|
+| **Domain Controller (DC)** | A core server running Active Directory that acts as the "brain" of the identity system, handling authentication requests and managing domain DNS. |
+| **Organizational Unit (OU)** | A directory folder used to organize users, computers, and groups by department or function, allowing policies to be applied centrally. |
+| **Security Group** | A container holding user accounts to grant access to resources collectively, implementing efficient role-based access control. |
+| **Group Policy Object (GPO)** | A collection of configuration settings functioning as an automated rulebook enforced across users or computers within a linked OU. |
+| **User Account** | An entry representing a person or service, containing credentials, group memberships, and attributes that control access to network resources. |
 
 ---
 
