@@ -12,7 +12,7 @@
 
 Follow along as I complete this lab! 
 
-https://www.loom.com/share/8dabc9d278f142ad891bd00f2dac9b9e
+[Loom Video: Active Directory Domain Services Lab](https://www.loom.com/share/8dabc9d278f142ad891bd00f2dac9b9e)
 
 ---
 
