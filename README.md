@@ -269,6 +269,7 @@ Add-ADGroupMember -Identity "Sales_Users"   -Members "david.smith"
 ```
 
 <img width="1417" height="845" alt="Password:Users:Role" src="https://github.com/user-attachments/assets/84b612e6-437a-4b98-85bf-2588d3e96d14" />
+
 > In Active Directory Users and Computers, select each OU and confirm it contains its user account (Type: User) and its department security group (Type: Security Group - Global), in this example bob.patel and Finance_Users in the Finance OU.
 
 
