@@ -409,7 +409,25 @@ Get-ADPrincipalGroupMembership -Identity "alice.chen" | Select-Object Name
 | Group memberships are correct | `Get-ADGroupMember -Identity IT_Admins` | Returns alice.chen (repeat for the other three groups) |
 | GPO is linked | `Get-GPInheritance -Target 'OU=IT,DC=lab,DC=local'` | Shows IT Security Policy under GpoLinks, Enabled: True |
 
+<img width="1211" height="843" alt="Confirm DC is running" src="https://github.com/user-attachments/assets/302ad518-90f9-4d24-94db-9f6edd00c30a" />
 
+> Shows the status and details of the main server running the network (lab.local). It displays its IP address, operating system (Windows Server 2025), and confirms it is handling all core management duties.
+
+<img width="1211" height="843" alt="Verify OUs exist" src="https://github.com/user-attachments/assets/727f07df-f2e9-4731-9b35-06bb6127bec9" />
+
+> Lists all the main organizational folders (OUs) set up in the network directory.
+
+<img width="1211" height="843" alt="Veriy users exist and are enabled" src="https://github.com/user-attachments/assets/95a8c2f1-6b0c-4298-9414-c6c93b1d8ff4" />
+
+> Pulls up a list of all active, working user accounts on the network, showing usernames.
+
+<img width="1210" height="840" alt="Verify Group Membership" src="https://github.com/user-attachments/assets/c491c363-e4ab-4ed3-a2ed-6efa39163fb2" />
+
+> Lists who belongs to the IT Administrators group. 
+
+<img width="1206" height="838" alt="GPO is Linked" src="https://github.com/user-attachments/assets/8d3d2788-8954-4a0a-84a1-3854ce1bc805" />
+
+> Checks the security rules applied to the IT department. It confirms that the department is correctly receiving its security settings and the standard domain rules.
   
 </details>
   
