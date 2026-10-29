@@ -433,7 +433,7 @@ Get-ADPrincipalGroupMembership -Identity "alice.chen" | Select-Object Name
   
 ---
 
-## Key Skills Demonstrated
+## 🛠️ Key Skills Demonstrated
 
 **Cloud Infrastructure & Remote Administration:** Provisioning and managing virtual machines within Microsoft Azure using Remote Desktop Protocol (RDP) with customized local resource mapping.
 
@@ -451,7 +451,7 @@ Get-ADPrincipalGroupMembership -Identity "alice.chen" | Select-Object Name
 
 ---
 
-## Key Terms
+## 📚 Key Terms
 
 | Term | Description & Role in Active Directory |
 | --- | --- |
@@ -464,5 +464,5 @@ Get-ADPrincipalGroupMembership -Identity "alice.chen" | Select-Object Name
 
 ---
 
-## Lessons Learned 
+## 💡Lessons Learned 
 
