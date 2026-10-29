@@ -1,4 +1,4 @@
-# Lab 1: Active Directory Domain Services on Azure
+# 🗄️ Lab 1: Active Directory Domain Services on Azure
 
 ![Platform: Microsoft Azure](https://img.shields.io/badge/Platform-Microsoft%20Azure-0078D4?logo=microsoftazure&logoColor=white)
 ![Operating System: Windows Server 2025](https://img.shields.io/badge/Operating%20System-Windows%20Server%202025-0078D4?logo=windows&logoColor=white)
