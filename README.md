@@ -201,7 +201,10 @@ New-ADOrganizationalUnit -Name "Sales"   -Path "DC=lab,DC=local"
 
 > The `Computers` OU already exists by default — the error shown is expected and non-breaking.
 
-![Automated OU provisioning — IT, Finance, HR, Sales](screenshots/Screenshot%202026-06-09%20224456.png)
+<img width="1429" height="826" alt="Create OUs" src="https://github.com/user-attachments/assets/c8396f8e-64b4-4fdd-a225-b52b52a35e26" />
+
+> OUs created with New-ADOrganizationalUnit and verified in Active Directory Users and Computers.
+
 </details>
 
 <details>
@@ -216,7 +219,10 @@ New-ADGroup -Name "HR_Users"       -GroupScope Global -GroupCategory Security -P
 New-ADGroup -Name "Sales_Users"    -GroupScope Global -GroupCategory Security -Path "OU=Sales,DC=lab,DC=local"
 ```
 
-![Automated security group provisioning](screenshots/Screenshot%202026-06-09%20224544.png)
+<img width="1405" height="848" alt="Create Security Group" src="https://github.com/user-attachments/assets/d9ac3624-ee7e-4edf-bd3f-d9161219edf8" />
+
+> In Active Directory Users and Computers, select each OU and confirm it contains its security group with Type shown as Security Group - Global.
+
 </details>
 
 <details>
