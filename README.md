@@ -451,7 +451,7 @@ Get-ADPrincipalGroupMembership -Identity "alice.chen" | Select-Object Name
 
 ---
 
-## 📚 Key Terms
+## 📖 Key Terms
 
 | Term | Description & Role in Active Directory |
 | --- | --- |
