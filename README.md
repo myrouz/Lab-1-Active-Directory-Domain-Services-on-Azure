@@ -435,14 +435,19 @@ Get-ADPrincipalGroupMembership -Identity "alice.chen" | Select-Object Name
 
 ## Key Skills Demonstrated
 
-- Azure VM provisioning and NSG configuration
-- PowerShell automation of AD DS installation and forest promotion
-- Organizational unit (OU) hierarchy design aligned to business structure
-- Role-based security group provisioning
-- Bulk user account creation with secure credential handling
-- Group Policy Object (GPO) creation, linking, and registry-based policy injection
-- Automated audit scripting with `Get-ADDomainController`, `Get-ADOrganizationalUnit`, `Get-ADUser`, `Get-ADGroupMember`, and `Get-GPInheritance`
-- Git version control for infrastructure scripts
+**Cloud Infrastructure & Remote Administration:** Provisioning and managing virtual machines within Microsoft Azure using Remote Desktop Protocol (RDP) with customized local resource mapping.
+
+**Domain Controller Deployment & Management:** Promoting a Windows Server to an Active Directory Domain Controller (lab.local), establishing a new AD forest, and managing core DNS and identity services
+
+**Directory Structure Design:** Creating and organizing Organizational Units (OUs) to segment departmental resources (IT, Finance, HR, Sales) and computer accounts.
+
+**Identity & Access Management (IAM):** Creating, enabling, and managing user accounts alongside configuring security groups to implement role-based access control (RBAC) and the principle of least privilege.
+
+**Group Policy Administration:** Deploying and configuring Group Policy Objects (GPOs) via the Group Policy Management Console (GPMC) to enforce enterprise-wide security baselines—such as password complexity requirements, screen lock timers, and USB storage restrictions.
+
+**IT Help Desk Operations:** Performing routine administrative tasks including resetting passwords, forcing password changes at next logon, unlocking locked user accounts, and managing the employee account lifecycle (disabling accounts during offboarding).
+
+**PowerShell Automation & Auditing:** Using Active Directory PowerShell cmdlets (Get-ADUser, Get-ADGroupMember, Get-GPInheritance, etc.) to script administrative tasks, audit group memberships, query inactive accounts, and verify domain health.
 
 ---
 
