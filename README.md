@@ -226,7 +226,7 @@ New-ADGroup -Name "Sales_Users"    -GroupScope Global -GroupCategory Security -P
 </details>
 
 <details>
-  <summary><b>7. Create User Accounts</b></summary>
+  <summary><b>7. Define Password/Create User Accounts/Assign Role-Based Group Memberships</b></summary>
 
 Bulk-provision user accounts with secure passwords, placing each user in their department OU.
 
@@ -237,26 +237,45 @@ Bulk-provision user accounts with secure passwords, placing each user in their d
 | `carol.jones` | HR | Carol Jones |
 | `david.smith` | Sales | David Smith |
 
-![Batch user creation across IT, Finance, HR, and Sales OUs](screenshots/Screenshot%202026-06-09%20224601.png)
-</details>
 
-<details>
-  <summary><b>8. Assign Role-Based Group Memberships</b></summary>
-
-Add each user to their corresponding security group to enable role-based access control (RBAC).
+## IMPORTANT: Run this entire block together — not line by line
 
 ```powershell
+# Step 1 — define the password variable first
+$password = ConvertTo-SecureString "Welcome@2026!" -AsPlainText -Force
+ 
+# Step 2 — create all 4 users (Name parameter is required)
+New-ADUser -Name "alice.chen" -GivenName "Alice" -Surname "Chen" `
+  -SamAccountName "alice.chen" -UserPrincipalName "alice.chen@lab.local" `
+  -Path "OU=IT,DC=lab,DC=local" -AccountPassword $password -Enabled $true
+ 
+New-ADUser -Name "bob.patel" -GivenName "Bob" -Surname "Patel" `
+  -SamAccountName "bob.patel" -UserPrincipalName "bob.patel@lab.local" `
+  -Path "OU=Finance,DC=lab,DC=local" -AccountPassword $password -Enabled $true
+ 
+New-ADUser -Name "carol.jones" -GivenName "Carol" -Surname "Jones" `
+  -SamAccountName "carol.jones" -UserPrincipalName "carol.jones@lab.local" `
+  -Path "OU=HR,DC=lab,DC=local" -AccountPassword $password -Enabled $true
+ 
+New-ADUser -Name "david.smith" -GivenName "David" -Surname "Smith" `
+  -SamAccountName "david.smith" -UserPrincipalName "david.smith@lab.local" `
+  -Path "OU=Sales,DC=lab,DC=local" -AccountPassword $password -Enabled $true
+ 
+# Step 3 — add each user to their department group
 Add-ADGroupMember -Identity "IT_Admins"     -Members "alice.chen"
 Add-ADGroupMember -Identity "Finance_Users" -Members "bob.patel"
 Add-ADGroupMember -Identity "HR_Users"      -Members "carol.jones"
 Add-ADGroupMember -Identity "Sales_Users"   -Members "david.smith"
 ```
 
-![Role-based group membership assignment](screenshots/Screenshot%202026-06-09%20224623.png)
+<img width="1417" height="845" alt="Password:Users:Role" src="https://github.com/user-attachments/assets/84b612e6-437a-4b98-85bf-2588d3e96d14" />
+> In Active Directory Users and Computers, select each OU and confirm it contains its user account (Type: User) and its department security group (Type: Security Group - Global), in this example bob.patel and Finance_Users in the Finance OU.
+
+
 </details>
 
 <details>
-  <summary><b>9. Create and Configure a Group Policy Object (GPO)</b></summary>
+  <summary><b>8. Create and Configure a Group Policy Object (GPO)</b></summary>
 
 Create the `IT Security Policy` GPO, link it to the IT OU, and inject baseline security registry settings — including inactivity screensaver enforcement — to meet corporate security requirements.
 
@@ -284,7 +303,7 @@ Set-GPRegistryValue -Name "IT Security Policy" `
 </details>
 
 <details>
-  <summary><b>10. Run Automated Audit Validation</b></summary>
+  <summary><b>9. Run Automated Audit Validation</b></summary>
 
 Execute the built-in audit report to verify the full deployment: domain controller status, OU hierarchy, user accounts, group nesting, and GPO inheritance.
 
