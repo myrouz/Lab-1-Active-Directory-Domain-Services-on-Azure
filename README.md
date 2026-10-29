@@ -157,7 +157,7 @@ When installation finishes, click the flag icon in Server Manager and choose Pro
 
 <img width="1254" height="754" alt="Promote Domain Controller" src="https://github.com/user-attachments/assets/c4b57222-6362-42fe-9003-f8e7efb7044c" />
 
-<img width="617" height="378" alt="Add Forest" src="https://github.com/user-attachments/assets/22bb4b8d-3a2e-4141-a856-86b9ac9f07b1" />
+<img width="1254" height="754" alt="Add Forest" src="https://github.com/user-attachments/assets/22bb4b8d-3a2e-4141-a856-86b9ac9f07b1" />
 
 <img width="1251" height="756" alt="Set DSRM Password" src="https://github.com/user-attachments/assets/8e74980c-6baa-402f-b77d-ad41a584fb5e" />
 
@@ -296,34 +296,121 @@ Set-GPRegistryValue -Name "IT Security Policy" `
   -ValueName "ScreenSaverIsSecure" -Type String -Value "1"
 ```
 
-![GPO created and linked to OU=IT — IT Security Policy](screenshots/Screenshot%202026-06-09%20225758.png)
+<img width="787" height="599" alt="GPO created and Linked to OU=IT" src="https://github.com/user-attachments/assets/dd3e440f-8d7e-44d0-ba05-3ba338744860" />
 
-![ScreenSaveActive registry policy injected](screenshots/Screenshot%202026-06-09%20225824.png)
+> Creating and linking a GPO to the IT OU in Group Policy Management.
 
-![ScreenSaverIsSecure registry policy injected](screenshots/Screenshot%202026-06-09%20225845.png)
+
+<img width="783" height="547" alt=" IT Security Policy" src="https://github.com/user-attachments/assets/ed37361d-6583-435e-bb31-72ed419aa5a0" />
+
+> IT Security Policy GPO linked to the IT OU and shown as enabled in Group Policy Management.
 </details>
 
 <details>
-  <summary><b>9. Run Automated Audit Validation</b></summary>
+  <summary><b>9. GPO Configuration: IT Security Policy</b></summary>  
 
-Execute the built-in audit report to verify the full deployment: domain controller status, OU hierarchy, user accounts, group nesting, and GPO inheritance.
+Linked to the **IT** OU. All settings are under **Computer Configuration**.
 
-**Domain Controller:**
+| Setting | Value | Policy Path | Purpose |
+|---------|-------|-------------|---------|
+| Minimum password length | 12 | Windows Settings → Security Settings → Account Policies → Password Policy | Enforces strong passwords |
+| Password must meet complexity requirements | Enabled | Windows Settings → Security Settings → Account Policies → Password Policy | Requires upper, lower, number, and symbol |
+| Interactive logon: Machine inactivity limit | 900 seconds | Windows Settings → Security Settings → Local Policies → Security Options | Auto-locks the screen after 15 minutes |
+| All Removable Storage classes: Deny all access | Enabled | Administrative Templates → System → Removable Storage Access | Prevents data exfiltration via USB drives |
 
-| ComputerName | Operating System | Forest |
-|---|---|---|
-| `dc01` | Windows Server 2025 Datacenter | `lab.local` |
+<img width="885" height="700" alt="Password Policy Settings" src="https://github.com/user-attachments/assets/f90ee5e0-c621-4b6c-a95e-a753ce07ba58" />
 
-**OU Structure verified:** IT, Finance, HR, Sales  
-**Users verified:** alice.chen, bob.patel, carol.jones, david.smith (all enabled)  
-**Group nesting verified:** alice.chen → IT_Admins  
-**GPO inheritance verified:** IT Security Policy → OU=IT
+> Set Minimum password length to 12 characters and enabled Password must meet complexity requirements in the IT Security Policy GPO. Together they reject short or predictable passwords by requiring length plus a mix of uppercase, lowercase, numbers, and symbols.
 
-![Audit report — DC status and OU hierarchy](screenshots/Screenshot%202026-06-09%20230304.png)
+<img width="885" height="700" alt="Machine Inactivity Limit" src="https://github.com/user-attachments/assets/322879e1-d531-4e5f-adc9-c8c7d23fcdad" />
 
-![Audit report — user validation and group nesting](screenshots/Screenshot%202026-06-09%20230534.png)
+> Configured Interactive logon: Machine inactivity limit to 900 seconds. Workstations in the IT OU automatically lock after 15 minutes of inactivity, which protects unattended sessions.
 
-![Audit report — GPO inheritance confirmed on IT OU](screenshots/Screenshot%202026-06-09%20230702.png)
+<img width="885" height="700" alt="Removable Storage Access" src="https://github.com/user-attachments/assets/c6781eec-4a03-4ab7-923a-55e2241fc76b" />
+
+> Enabled All Removable Storage classes: Deny all access. This blocks read and write access to USB drives, CDs/DVDs, and other removable media, reducing the risk of data exfiltration and malware introduced by USB.
+
+
+</details>
+
+<details>
+  <summary><b>10. Common Help Desk Tasks</b></summary>
+
+Day-to-day account management I practiced in the lab, using PowerShell.
+
+| Scenario | Cmdlet |
+|----------|--------|
+| Reset a forgotten password | `Set-ADAccountPassword`, `Set-ADUser` |
+| Unlock a locked-out account | `Unlock-ADAccount` |
+| Offboard an employee | `Disable-ADAccount` |
+| Audit inactive accounts and group membership | `Get-ADUser`, `Get-ADPrincipalGroupMembership` |
+
+### Reset a password
+
+The most common help desk ticket. Always force a password change at next logon so the user sets their own password immediately.
+
+```powershell
+Set-ADAccountPassword -Identity "bob.patel" -Reset -NewPassword (ConvertTo-SecureString "NewPass@2026!" -AsPlainText -Force)
+Set-ADUser -Identity "bob.patel" -ChangePasswordAtLogon $true
+```
+
+> The password above is a lab-only temporary value.
+
+### Unlock a locked account
+
+Accounts lock automatically after too many failed sign-in attempts, which makes this one of the most frequent calls to any help desk.
+
+```powershell
+Unlock-ADAccount -Identity "carol.jones"
+```
+
+To see which accounts are currently locked:
+
+```powershell
+Search-ADAccount -LockedOut | Select-Object Name, SamAccountName
+```
+
+### Disable an account (offboarding)
+
+When someone leaves the organization, disable the account instead of deleting it. Disabling preserves the account history and group memberships for audit purposes. Deletion is permanent.
+
+```powershell
+Disable-ADAccount -Identity "david.smith"
+
+# Find all currently disabled user accounts
+Search-ADAccount -AccountDisabled -UsersOnly | Select-Object Name, SamAccountName
+```
+
+### Audit and reporting
+
+Security and compliance teams regularly need reports on inactive accounts, group memberships, and sign-in activity.
+
+```powershell
+# Enabled accounts with no logon in 90 days (or that have never logged on)
+$cutoff = (Get-Date).AddDays(-90)
+Get-ADUser -Filter 'Enabled -eq $true' -Properties LastLogonDate |
+  Where-Object { $_.LastLogonDate -lt $cutoff -or -not $_.LastLogonDate } |
+  Select-Object Name, LastLogonDate
+
+# Group membership for a specific user
+Get-ADPrincipalGroupMembership -Identity "alice.chen" | Select-Object Name
+```
+
+</details>
+
+<details>
+  <summary><b>11. Verification — Confirm the Lab is Working</b></summary>
+
+| Check | Command | Expected Result |
+|-------|---------|-----------------|
+| Domain controller is running | `Get-ADDomainController` | Returns DC info for `dc01`, domain and forest `lab.local` |
+| OUs exist | `Get-ADOrganizationalUnit -Filter * \| Select-Object Name` | Lists IT, Finance, HR, Sales, and the built-in Domain Controllers OU |
+| Users exist and are enabled | `Get-ADUser -Filter 'Enabled -eq $true' -SearchBase "DC=lab,DC=local" \| Select-Object SamAccountName` | Includes alice.chen, bob.patel, carol.jones, david.smith |
+| Group memberships are correct | `Get-ADGroupMember -Identity IT_Admins` | Returns alice.chen (repeat for the other three groups) |
+| GPO is linked | `Get-GPInheritance -Target 'OU=IT,DC=lab,DC=local'` | Shows IT Security Policy under GpoLinks, Enabled: True |
+
+
+  
 </details>
   
 ---
