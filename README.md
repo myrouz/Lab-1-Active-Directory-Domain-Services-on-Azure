@@ -83,25 +83,18 @@ c. **Review & Create:** Click **Review + create**, wait for validation, and clic
 
 d. **Connect:** Once deployed, go to the resource, copy your **Public IP address**, and use RDP to log in.
 
+<img width="1256" height="648" alt="Windows VM Deployed" src="https://github.com/user-attachments/assets/100423d3-1208-4297-8b7f-c6321af79196" />
 
 </details>
 
 <details>
   <summary><b>2. Connect via Remote Desktop (RDP)</b></summary>
 
-a. **** Click Go to Resource on the Deployment Complete page. Click Connect with dropdown. Select the first Connect option.
+a. **Connect** Click Go to Resource on the Deployment Complete page. Click Connect with dropdown. Select the first Connect option.
 
-b. **** Select Download RDP file. Click file to open Windows Remote Desktop. 
+b. **Download RDP file** Select Download RDP file. Click file to open Windows Remote Desktop. 
 
-c. **** Enter password when prompted to your credentials. 
-
-a. **Get the Public IP:** In the [Azure Portal](https://portal.azure.com), navigate to your virtual machine and copy its **Public IP address** from the Overview page.
-
-b. **Launch Remote Desktop:** On your local computer, open the Remote Desktop Connection app (press the Windows key, type `mstsc`, and press Enter).
-
-c. **Enter the IP Address:** Paste your VM's public IP address into the **Computer** field and click **Connect**.
-
-d. **Authenticate:** When prompted for credentials, enter the administrator **Username** and **Password** you created during the VM setup.
+c. **Authenticate** When prompted for credentials, enter the administrator **Username** and **Password** you created during the VM setup.
 
 e. **Accept Certificate (If Prompted):** If a certificate warning appears regarding the remote computer's identity, click **Yes** or **Continue** to establish the connection.
 </details>
@@ -148,20 +141,50 @@ Both commands complete with `Success: True`.
 <details>
   <summary><b>4. Promote the Server to a Domain Controller</b></summary>
 
-Option 1: Server MAnager (GUI)
+Option 1: Server Manager (GUI)
 
- - When it finishes, click the flag icon in Server Manager and choose Promote this server to a domain controller to launch the configuration wizard.
+When installation finishes, click the flag icon in Server Manager and choose Promote this server to a domain controller to launch the configuration wizard.
 
+ - **Deployment Configuration:** select **Add a new forest** and enter the root domain name (for example, `lab.local`).
+ - **Domain Controller Options:** keep the default functional levels, leave **DNS server** and **Global Catalog** checked, and set a **Directory Services Restore Mode (DSRM)** password.
+ - **DNS Options:** a warning that a delegation for the DNS server can't be created is expected for a new forest. Click **Next**.
+ - **Additional Options:** confirm the NetBIOS domain name (for example, `LAB`).
+ - **Paths:** accept the default locations for the database, log files and SYSVOL.
+ - **Review Options:** confirm the settings. Optionally click **View script** to capture the equivalent PowerShell.
+ - **Prerequisites Check:** wait for the checks to pass (warnings are fine, errors are not), then click **Install**.
+ - `dc01` restarts automatically. Sign back in as `LAB\azureuser`.
+
+
+<img width="1254" height="754" alt="Promote Domain Controller" src="https://github.com/user-attachments/assets/c4b57222-6362-42fe-9003-f8e7efb7044c" />
+
+<img width="617" height="378" alt="Add Forest" src="https://github.com/user-attachments/assets/22bb4b8d-3a2e-4141-a856-86b9ac9f07b1" />
+
+<img width="1251" height="756" alt="Set DSRM Password" src="https://github.com/user-attachments/assets/8e74980c-6baa-402f-b77d-ad41a584fb5e" />
+
+<img width="1250" height="754" alt="NetBIOS" src="https://github.com/user-attachments/assets/9c98b0bf-ed01-498b-860c-90b03bf1fe09" />
+
+<img width="1248" height="754" alt="Installation" src="https://github.com/user-attachments/assets/8d670d55-41dc-4e04-a7d5-d9f7129d0a6a" />
+
+
+Option 2: Powershell (CLI)
 
 Run `Install-ADDSForest` to create a new forest and promote `dc01` to a domain controller for `lab.local`. The cmdlet handles DNS installation automatically.
 
 ```powershell
 Install-ADDSForest -DomainName "lab.local" -InstallDNS ...
 ```
-
+```
+# Promote dc01 to the first domain controller in a new forest
+Import-Module ADDSDeployment
+Install-ADDSForest `
+  -DomainName "lab.local" `
+  -DomainNetbiosName "LAB" `
+  -InstallDns:$true `
+  -SafeModeAdministratorPassword (Read-Host -AsSecureString "DSRM password") `
+  -Force:$true
+```
 > **Note:** The DNS delegation warning is expected in isolated lab environments — no action required.
 
-![Install-ADDSForest running — new forest installation and DNS setup](screenshots/Screenshot%202026-06-09%20223456.png)
 </details>
 
 <details>
