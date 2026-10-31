@@ -466,3 +466,13 @@ Get-ADPrincipalGroupMembership -Identity "alice.chen" | Select-Object Name
 
 ## 💡Lessons Learned 
 
+#### 🔒 1. Defensive Baseline Hardening (Default Settings ≠ Secure)
+Fresh Active Directory installations prioritize backward compatibility and seamless deployment over zero-trust security. 
+- **The Finding:** Default domain policies leave weak password thresholds, long idle session limits, and legacy authentication protocols enabled.
+- **The Remediation:** Enforced custom GPOs immediately following domain controller promotion to enforce 12+ character complex passwords, 15-minute automated screen locks, and restricted USB storage access across domain endpoints.
+
+#### 🛡️ 2. Identity Governance & RBAC (Mitigating Permission Creep)
+Assigning access rights directly to individual user objects creates an unmanageable, un-auditable permission structure that breaks down as systems scale.
+- **The Finding:** Direct ACL modifications lead to privilege accumulation and obscure true access scopes during security audits.
+- **The Remediation:** Implemented strict Role-Based Access Control (RBAC). Access rights are assigned exclusively to dedicated Security Groups, and users are managed via group membership—ensuring adherence to Least Privilege and simplifying offboarding workflows.
+
