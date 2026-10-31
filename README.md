@@ -12,7 +12,7 @@
 
 Learn how organizations manage users, computers, and access to network resources with Active Directory!
 
-
+[Loom Video: Active Directory Domain Services Lab](https://www.loom.com/share/ba5d5bb1a18e4a2eb02ebfd42b960190)
 
 ---
 
